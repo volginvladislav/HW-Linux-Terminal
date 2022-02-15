@@ -1,0 +1,96 @@
+1) Посмотреть где я -- pwd
+
+2) Создать папку:
+	-относительный путь -- mkdir HW_1
+	или абсолютный путь -- mkdir ~/HW_1
+
+3) Зайти в папку:
+	относительный путь -- cd HW_1
+	или абсолютный путь из корневой папки -- ~/HW_1
+
+4) Создать 3 папки 
+	-- mkdir HW_11 HW_12 HW_13
+	-- mldir HW_{1,2,3}
+
+5) Зайти в любоую папку -- cd HW_11
+
+6) Создать 5 файлов (3 txt, 2 json) 
+	-- touch file_1.txt file_2.txt file_3.txt file_1.json file_2.json
+	-- touch file_{1,2,3}.txt file_{1,2}.json
+
+7) Создать 3 папки -- mkdir HW_111 HW_112 HW_113
+
+8. Вывести список содержимого папки
+	Вывод файлов и папок -- ls
+	Вывод списка файлов построчно -- ls -l
+	Расширенный вывод всех файлов -- ls -la
+
+9) + Открыть любой txt файл -- vim file_1.txt
+
+10) + написать туда что-нибудь, любой текст. -- i - переход в режим редактирования
+
+Experience is simply the name 
+we give our mistakes
+
+11) + сохранить и выйти. 
+	-- esc - выйти из режима редактирования
+	-- :wq - сохранить изменения и выйти
+
+ Открыть файл можно с помощью команды -- nano file_1.txt
+	Выйти - ctrl+x
+	Save modified buffer? -- y
+	File Name to Write [DOS Format]: file_1.txt
+
+12) Выйти из папки на уровень выше -- cd ../
+
+13) переместить любые 2 файла, которые вы создали, в любую другую папку -- mv HW_11/{file_1.txt,file_2.txt} HW_11/HW_111
+								       	 
+14) скопировать любые 2 файла, которые вы создали, в любую другую папку -- cp HW_11/{file_1.json,file_2.json} HW_11/HW_112
+
+15) Найти файл по имени -- find . -name file_1.txt
+	
+16) просмотреть содержимое в реальном времени (команда grep) изучите как она работает -- tail -f fail_3.txt
+	Отредактировать файл в блокноте, сохранить изменения
+	Bзменения будут выведены в bash
+	16.1) в реальном времени просмотр определенной опции (our)-- tail -f fail_3.txt | grep our
+		Отредактировать файл в блокноте, сохранить изменения
+		Только те новые строки, где есть наша опция (our) будут видны в терминале
+		Запись изменений в отдельный файл -- tail -f file_3.txt | grep --line-buffered our >> our_log.txt 
+17) вывести несколько первых строк из текстового файла -- head -2 file_1.json
+
+18) вывести несколько последних строк из текстового файла -- tail -2 file_1.json
+
+19) просмотреть содержимое длинного файла (команда less) изучите как она работает.
+	Просмотр больших файлов -- less file_3.txt
+	Выйти из режима просмотра -- q
+
+20) вывести дату и время -- date
+=========
+
+Задание *
+1) Отправить http запрос на сервер.
+http://162.55.220.72:5005/terminal-hw-request
+	-- curl "http://162.55.220.72:5005/terminal-hw-request"
+Получаем ответ:{"Intro":"Hello!! This is your the first response from server","Tasks":{"Task_1":"Send the next URL in terminal: http://162.55.220.72:5005/get_method?name=(set_your_String)&age=(set_your_number)","result":["Your_String","Your_number"]}}
+Выполняем Task:
+	--- curl "http://162.55.220.72:5005/get_method?name=Vlad&age=25"
+Получаем ответ:["Vlad","25"]
+
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+открыть в редакторе скрипт -- nano bash_script_1.sh
+ctrl+o 
+ctrl+x - выход
+
+#!/bin/bash
+cd HW_1
+mkdir HW_11 HW_12 HW_13
+cd HW_11
+touch file_{1,2,3}.txt file_{1,2}.json
+mkdir HW_111 HW_112 HW_113
+ls -la
+mv {file_1.txt,file_2.txt} HW_111
+
+Выйти - ctrl+x
+Save modified buffer? -- y
+File Name to Write [DOS Format]: bash_script_1.sh
+Запустить скрипт -- ./bash_script_1.sh
